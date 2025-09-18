@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Route Now — Manual do Suporte | Via Group</title>
+  <meta name="description" content="Manual visual do Suporte Route Now: visão geral, painel de controle, encerramento de rotas, eventos, roteirizações, falhas de sinal e indicadores." />
+  <meta name="theme-color" content="#003366" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="pagprincipal.css">
+
+  <style>
+    :root{
+      --brand:#637281;      /* azul Via */
+      --brand-2:#0d6efd;    /* azul destaque */
+      --accent:#41b883;     /* verde sucesso */
+    }
+    html,body{font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;}
+    /* Navbar */
+    .navbar-brand img{height:48px}
+    .nav-link{letter-spacing:.04em}
+
+    /* Hero */
+    .hero{position:relative; min-height:100vh; background: radial-gradient(1200px 600px at 85% 10%, rgba(13,110,253,.25), transparent), linear-gradient(180deg, #001a33 0%, #001429 40%, #001024 100%); color:#fff; overflow:hidden}
+    .hero::after{content:""; position:absolute; inset:0; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="%23003366"/><stop offset="1" stop-color="%23001024"/></linearGradient></defs><rect fill="url(%23g)" opacity="0" width="100%" height="100%"/><g fill="none" stroke="%230066cc" stroke-opacity="0.15"><path d="M0,920 C480,820 1440,1020 1920,920"/><path d="M0,780 C480,680 1440,880 1920,780"/><path d="M0,640 C480,540 1440,740 1920,640"/></g></svg>') center/cover no-repeat; opacity:.2}
+    .hero .overlay{position:absolute; inset:0; background: radial-gradient(600px 300px at 15% 20%, rgba(255,255,255,.06), transparent), radial-gradient(600px 300px at 80% 70%, rgba(255,255,255,.04), transparent)}
+
+    /* Sections */
+    section{scroll-margin-top:80px}
+    .section-title{letter-spacing:.06em}
+    .lead-compact{max-width:68ch}
+
+    /* Cards */
+    .soft-card{background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:1rem; box-shadow:0 6px 24px rgba(0,0,0,.06)}
+    .soft-card .icon{width:48px; height:48px; border-radius:12px; display:grid; place-items:center; font-size:1.25rem}
+
+    /* Stepper */
+    .step{display:flex; gap:1rem; align-items:flex-start}
+    .step-no{flex:0 0 auto; width:36px; height:36px; border-radius:999px; display:grid; place-items:center; font-weight:800; color:#fff; background:linear-gradient(135deg, var(--brand), var(--brand-2))}
+
+    /* Badges */
+    .legend-badge{display:inline-flex; align-items:center; gap:.5rem; padding:.25rem .5rem; border:1px solid rgba(0,0,0,.1); border-radius:999px}
+    .dot{width:10px; height:10px; border-radius:999px; display:inline-block}
+
+    /* Footer */
+    footer a{ text-decoration:none }
+
+    /* Back to top */
+    #backToTop{position:fixed; right:1rem; bottom:1rem; opacity:0; pointer-events:none; transition:opacity .25s ease}
+    #backToTop.show{opacity:1; pointer-events:auto}
+  </style>
+</head>
+
+
+
+
+
+
+
+
+
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-smooth-scroll="true" tabindex="0">
+  <!-- Navbar -->
+  <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-2">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+        <i class="bi bi-truck-front-fill text-primary"></i>
+        <span class="fw-bold">Route Now</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto small text-uppercase fw-semibold">
+          <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#visao">Visão Geral</a></li>
+          <li class="nav-item"><a class="nav-link" href="#painel">Painel</a></li>
+          <li class="nav-item"><a class="nav-link" href="#encerrar">Encerrar Rotas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#roteirizacoes">Roteirizações</a></li>
+          <li class="nav-item"><a class="nav-link" href="#detalhes">Detalhes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#falhas">Falhas de Sinal</a></li>
+          <li class="nav-item"><a class="nav-link" href="#indicadores">Indicadores</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="home" class="hero d-flex align-items-center">
+    <div class="overlay"></div>
+    <div class="container position-relative">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7 text-white">
+          <h1 class="display-5 fw-bolder mb-3">Manual do Suporte <span class="text-info">Route Now</span></h1>
+          <p class="lead lead-compact opacity-75 mb-4" style="color: #ffffff;">Guia prático para a equipe: KMM, Painel de Controle, encerramento de rotas, tratamento de eventos, roteirizações, diagnóstico de falhas de sinal e indicadores de performance.</p>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="#encerrar" class="btn btn-primary btn-lg"><i class="bi bi-flag-fill me-2"></i>Começar pelo Encerramento</a>
+            <a href="#visao" class="btn btn-outline-light btn-lg"><i class="bi bi-diagram-3 me-2"></i>Entender o Ecossistema</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="soft-card p-4 text-white bg-gradient" style="background:linear-gradient(135deg,#0d6efd,#003366);">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="icon bg-light text-primary"><i class="bi bi-info-lg"></i></div>
+              <h2 class="h4 m-0">Primeiro passo no suporte</h2>
+            </div>
+            <p class="mb-2" style="color: #ffffff;">Ao entrar na equipe, a primeira atividade prática é <strong>encerrar rotas</strong>. Isso acelera o domínio do fluxo de dados no KMM e das ferramentas do dia a dia.</p>
+            <ul class="mb-0 small">
+              <li class="liimp">Conhecer o sistema na prática</li>
+              <li class="liimp">Entender o fluxo de informações no <strong>KMM</strong></li>
+              <li class="liimp">Familiarizar-se com as telas e rotinas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Visão Geral / KMM -->
+  <section id="visao" class="py-6 py-lg-7">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-5">
+          <h2 class="section-title text-uppercase fw-extrabold mb-3">Visão Geral</h2>
+          <h3 class="h4 text-primary"><a href="imagens/tela principal kmm.png" class="img-preview"   style="color: #003366; font-weight: bold;" target="_blank">KMM - BY NSTECH</a></h3>
+          <p>O <strong>KMM</strong> é o repositório central da Via Group: guarda os registros oficiais de clientes, pedidos, produtos e processos. Ele garante que todos utilizem a mesma fonte de verdade, preserva histórico e viabiliza integrações confiáveis entre sistemas.</p>
+          <ul class="small mb-0">
+            <li>Confiabilidade e unicidade dos dados</li>
+            <li>Histórico completo e auditável</li>
+            <li>Integração com demais sistemas da Via Group</li>
+          </ul>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="soft-card p-4 h-100">
+                <div class="icon bg-primary-subtle text-primary mb-3"><i class="bi bi-grid-1x2"></i></div>
+                <h4 class="h6"><a href="imagens/PAINEL DE CONTROLE.png" class="img-preview" target="_blank" style="color: black;">Painel de Controle</a></h4>
+                <p class="mb-0 small">Centro operacional do suporte: acesso às rotas, encerramento, litros coletados, motorista e caminhão.</p>
+                    <!--/<img src="imagens/tela principal kmm.png" alt="telaprincipalkmm">-->
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="soft-card p-4 h-100">
+                <div class="icon bg-primary-subtle text-primary mb-3"><i class="bi bi-map"></i></div>
+                <h4 class="h6"><a href="imagens/MAPA E FUNÇÕES.png" class="img-preview" style="color: black;" target="_blank">Mapa e Operações</a></h4>
+                <p class="mb-0 small"><span class="text-primary">Funções em azul</span>: operações no painel. <span class="text-danger">Funções em vermelho</span>: recursos do mapa.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="soft-card p-4 h-100">
+                <div class="icon bg-primary-subtle text-primary mb-3"><i class="bi bi-clipboard2-check"></i></div>
+                <h4 class="h6">Treinamento Guiado</h4>
+                <p class="mb-0 small">Material passo a passo: do acesso ao sistema até finalizar corretamente uma rota.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="soft-card p-4 h-100">
+                <div class="icon bg-primary-subtle text-primary mb-3"><i class="bi bi-diagram-3"></i></div>
+                <h4 class="h6">Fluxo no KMM</h4>
+                <p class="mb-0 small">Cadastro, atualização e consulta sempre na fonte oficial.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Painel de Controle -->
+  <section id="painel" class="py-6 bg-light">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <h2 class="section-title text-uppercase fw-extrabold mb-3">Painel de Controle</h2>
+          <p class="mb-3">Acesse todas as rotas e suas informações em um só lugar. Utilize os filtros, veja status em tempo real e finalize as rotas com segurança.</p>
+          <div class="soft-card p-4">
+            <div class="step mb-3"><span class="step-no">1</span><div><strong><a href="imagens/CAMINHO PAINEL.png" class="img-preview" target="_blank" style="color: #001a33;">Acessar</a></strong> via <em>T1 &gt; Painel de Controle</em> no KMM.</div></div>
+            <div class="step mb-3"><span class="step-no">2</span><div><strong><a href="imagens/PAINEL DE CONTROLE IMG.png" class="img-preview" target="_blank" style="color: #001a33;">Pagina Principal</a></strong> Aqui mostra todas as informações disponiveis do painel de controle. Ex: acessoa ao trajeto dos roteiros, listas, cadastros das rotas/propriedades.</div></div>
+            <div class="step mb-3"><span class="step-no">3</span><div><strong><a href="imagens/MODELOS PAINEL.png" class="img-preview" target="_blank" style="color: #001a33;">Modelos</a></strong> Para realizar seu objetivo de forma otimzada, pode criar modelos de acordo com a sua necessidade, te dando liberdade para configurar a ordem das colunas e informações aparentes: <em>Opções &gt; Modelos</em>.</div></div>
+            <div class="step"><span class="step-no">4</span><div><strong><a href="imagens/MAPA.png" class="img-preview" target="_blank" style="color: #001a33;">Mapa para consulta</a></strong> Você pode também escolher se deseja que o mapa fique aparente ou oculto. O mapa aparente serve para você consultar a rota na integra, deixando mais visual e, ajudando a deixar os problemas mais aparentes. <em>Essa função deve ser ativada ou desativada na hora de filtrar a operação.</em></div></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="soft-card p-4">
+            <h3 class="h5 mb-3"><i class="bi bi-flag me-2 text-primary"></i>Boas práticas</h3>
+            <ul class="mb-0 small">
+              <li>Validar placa, motorista e reboques antes de encerrar.</li>
+              <li>Garantir que os horários e o sequenciamento façam sentido operacional.</li>
+              <li>Registrar ocorrências quando houver desvios (eventos não executados, executados por outra rota, etc.).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Encerrar Rotas -->
+  <section id="encerrar" class="py-6">
+    <div class="container">
+      <h2 class="section-title text-uppercase fw-extrabold mb-3">Encerramento de Rotas — Passo a Passo</h2>
+
+
+
+
+       <div class="d-flex flex-wrap gap-2 mb-4">
+  <!-- Operações (azul) -->
+  <span
+    class="legend-badge"
+    data-preview-src="assets/previews/operacoes-azul.jpg"
+    data-title="Operações (azul)"
+    data-text="Aqui você coloca o texto explicativo do popup para Operações.
+Pode ter mais de uma linha, é só usar quebra de linha.">
+    <span class="dot" style="background:#0d6efd"></span><a href="imagens/funcoes sistema.png" class="img-preview" target="_blank" style="color: #001024;">Funções do Operacional (azul)</a>
+  </span>
+
+  <!-- Mapa (vermelho) -->
+  <span
+    class="legend-badge"
+    data-preview-src="assets/previews/mapa-vermelho.jpg"
+    data-title="Mapa (vermelho)"
+    data-text="Seu texto explicativo do popup para Mapa (vermelho).">
+    <span class="dot" style="background:#dc3545"></span><a href="imagens/funcoes mapa.png" class="img-preview" target="_blank" style="color: #001024;">Funções do Mapa (vermelho)</a> 
+  </span>
+</div>
+
+
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <div class="step mb-3"><span class="step-no">1</span><div><strong>Acessar a tela do Route Now</strong> &rarr; <em>T1 &gt; Painel de Controle</em>.</div></div>
+            <div class="step mb-3"><span class="step-no">2</span><div><strong><a href="imagens/CONFERIR PLACA.png" class="img-preview" target="_blank" style="color: #001a33;">Conferir Placa</a></strong> Se houver divergência, ajuste em <em>Operações &gt; Alterar caminhão</em>.</div></div>
+            <div class="step mb-3"><span class="step-no">3</span><div><strong><a href="imagens/HORARIO.png" class="img-preview" target="_blank" style="color: #001a33;">Conferir Horários</a></strong> com as bandeiras de início (amarela) e fim (quadriculada). Use os campos manuais quando necessário.</div></div>
+            <!-- <div class="step"><span class="step-no">4</span><div><strong>Tratar Eventos</strong> (ver seção <a href="#eventos">Eventos</a>) e então <strong>encerrar</strong> a rota.</div></div> -->
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <h3 class="h6 text-uppercase text-muted">Dicas rápidas</h3>
+            <ul class="small mb-3">
+              <li><a href="imagens/exemplo encerramento.png" class="img-preview" target="_blank" style="color: #001a33;">Exemplos visuais ajudam a identificar horário correto (início/fim).</a></li>
+              <li>Mantenha coerência entre data/hora e execução real da rota.</li>
+            </ul>
+            <h4 class="h6 text-uppercase text-muted">Ocorrências</h4>
+            <p class="small mb-0"><a href="imagens/INSERIR OCORRENCIA.png" class="img-preview" target="_blank" style="color: #001a33;">Para eventos não executados ou realizados por outra rota: clique em <em>Inserir</em>, selecione o motivo (ex.: executado por outra rota, leite quente), informe o <strong>KM previsto</strong> a descontar/acrescentar e descreva no <em>Complemento</em>. Confirme para registrar.</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eventos -->
+  <section id="eventos" class="py-6 bg-light">
+    <div class="container">
+      <h2 class="section-title text-uppercase fw-extrabold mb-4"><a href="imagens/EVENTOS.png" class="img-preview" target="_blank" style="color: #001a33;">Eventos</a> — Cores e Tratamentos</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="soft-card p-4 h-100">
+            <div class="legend-badge mb-2"><span class="dot" style="background:#198754"></span> Executados</div>
+            <p class="smallmb-0">Eventos <strong>Verdes</strong> indicam execução concluída.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="soft-card p-4 h-100">
+            <div class="legend-badge mb-2"><span class="dot" style="background:#dc3545"></span> Não executados</div>
+            <p class="smallmb-0">Eventos <strong>Vermelhos</strong> são cancelados ou não realizados.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="soft-card p-4 h-100">
+            <div class="legend-badge mb-2"><span class="dot" style="background:#6c757d"></span> Previsto / ajustar</div>
+            <p class="smallmb-0">Eventos <strong>Cinzas</strong> exigem ajuste (ex.: localização incorreta, execução por outra rota).</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="soft-card p-4 h-100">
+            <div class="legend-badge mb-2"><span class="dot" style="background:#ffc107"></span> Fora de ordem</div>
+            <p class="smallmb-0">Eventos <strong>Amarelos</strong> foram executados fora da sequência prevista.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="soft-card p-4 mt-4">
+        <h3 class="h6 mb-3"><i class="bi bi-geo-alt me-2 text-primary"></i><a href="imagens/AJUSTE LOCALIZAÇÃO.png" class="img-preview" target="_blank" style="color: #001024;">Ajuste de localização</a></h3>
+        <ol class="small mb-0">
+          <li>Clique no <strong>nome em azul</strong> para abrir o cadastro da propriedade.</li>
+          <li>Clique em <strong>Editar</strong> (canto superior esquerdo).</li>
+          <li>Informe <strong>Latitude,Longitude</strong> e ajuste a <strong>Referência</strong>.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roteirizações -->
+  <section id="roteirizacoes" class="py-6">
+    <div class="container">
+      <h2 class="section-title text-uppercase fw-extrabold mb-3"><a href="imagens/ROTEIRIZADOR.png" class="img-preview" target="_blank" style="color: #001024;">Roteirizações</a></h2>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <h3 class="h6 text-uppercase text-muted">Fluxo</h3>
+            <ul class="small mb-3">
+              <li><a href="imagens/ARQUIVO CLIENTE.png" class="img-preview" target="_blank" style="color: #001024;">Cliente envia arquivo (formatos variam por cliente).</a></li>
+              <li><a href="imagens/CADA CLIENTE COM SEU ROTEIRIZADOR.png" class="img-preview" target="_blank" style="color: #001024;">Cada cliente possui seu <strong>roteirizador</strong> específico.</a></li>
+              <li>Abrir o arquivo, entender a estrutura e usar o roteirizador correto.</li>
+              <li>Todos os roteirizadores ficam no OneDrive, pasta <em>ROTEIRIZADORES</em>.</li>
+            </ul>
+            <h4 class="h6 text-uppercase text-muted">Como usar</h4>
+            <ol class="small mb-0">
+              <li><a href="imagens/IMP ROTE.png" class="img-preview" target="_blank" style="color: #001024;">Copie o arquivo recebido e <strong>cole na aba IMP</strong> do roteirizador.</a></li>
+              <li><a href="imagens/ORDEM DO ROTEIRIZADOR.png" class="img-preview" target="_blank" style="color: #001024;">Execute os <strong>macros</strong> na ordem indicada até padronizar.</a></li>
+              <li><strong>Nunca salve</strong> o arquivo do roteirizador: ao fechar, escolha <em>Não salvar</em>.</li>
+              <li><a href="imagens/ORDEM DO ROTEIRIZADOR2.png" class="img-preview" target="_blank" style="color: #001024;">Transfira o resultado para uma <strong>planilha nova</strong> e utilize o macro <strong>PADRONIZAR</strong> </a>.
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <h3 class="h6 text-uppercase text-muted">Padrões de conferência</h3>
+            <ul class="small mb-3">
+              <li><a href="imagens/ordem dos fatores.png" class="img-preview" target="_blank" style="color: #001024;">Sequência de eventos: <em>SAÍDA → DESENGATE → TRANSBORDO → ENGATE → DESCARGA → REGRESSO</em>.</a></li>
+              <br>
+              <li><a href="imagens/DATAS.png" class="img-preview" target="_blank" style="color: #001024;">Datas/horários: se a rota virar o dia, ajuste a data do último evento para o dia seguinte e marque <strong>1</strong>.</a></li>
+              <br>
+              <li><a href="imagens/ESCALA PADRAO.png" class="img-preview" target="_blank" style="color: #001024;">Escala padrão: contém placa, horários, reboques, KM previsto, data início etc. Use <em>PROCV</em> no Excel para cruzar dados.</a></li>
+            </ul>
+            <div class="alert alert-warning small mb-0" style="background-color: #dc3546b3; color: #001429;"><i class="bi bi-exclamation-triangle-fill me-2"></i><strong>Atenção:</strong> Nunca salve o roteirizador, pois caso seja salvo todos os macros serão perdidos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detalhes (Vigência, Produtor, Importação) -->
+  <section id="detalhes" class="py-6 bg-light">
+    <div class="container">
+      <h2 class="section-title text-uppercase fw-extrabold mb-4">Entrando nos Detalhes</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="soft-card p-4 h-100">
+            <div class="icon bg-primary-subtle text-primary mb-2"><i class="bi bi-calendar2-week"></i></div>
+            <h3 class="h6" style="color: #001429;">O que é uma <strong>Vigência</strong>?</h3>
+            <p class="small mb-0" style="color: #001429;">Período em que a rota está <em>ativa e válida</em> (data de início e término). Após o fim da vigência, a rota é considerada vencida.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="soft-card p-4 h-100">
+            <div class="icon bg-primary-subtle text-primary mb-2"><i class="bi bi-person-plus"></i></div>
+            <h3 class="h6">Cadastrar/Alterar <strong>Produtor</strong></h3>
+            <ul class="small mb-0">
+              <li>T1 → Cadastros → Cadastro de Propriedade</li>
+              <li>Campos mínimos: nome, código, <em>Latitude,Longitude</em>, raio (padrão 250m) e operação.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="soft-card p-4 h-100">
+            <div class="icon bg-primary-subtle text-primary mb-2"><i class="bi bi-file-earmark-arrow-up"></i></div>
+            <h3 class="h6">Importar Arquivo</h3>
+            <ul class="small mb-0">
+              <li>T1 → Assistente → Importação de Referência</li>
+              <li>Importe a planilha de roteirização ou cadastre vários produtores de uma só vez.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Falhas de Sinal -->
+  <section id="falhas" class="py-6">
+    <div class="container">
+      <h2 class="section-title text-uppercase fw-extrabold mb-3">Falha de Sinal — Identificação & Ação</h2>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <p class="mb-2">Falha de sinal ocorre quando o rastreador perde comunicação com a rede celular. No mapa, o trajeto aparece com <strong><a href="imagens/FALHA DE SINAL.png" class="img-preview" target="_blank" style="color: #001024; text-transform: uppercase;">linhas retas</a></strong> entre pontos até o sinal voltar.</p>
+            <h3 class="h6 text-uppercase text-muted">Como verificar no Mix Telematics</h3>
+            <ol class="small mb-0">
+              <li>Acesse <em>Historical Tracking</em> para histórico das rotas.</li>
+              <li>Selecione operação e caminhão; ajuste a data desejada.</li>
+              <li>Exiba o trajeto conforme o rastreador e confira a continuidade do sinal.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="soft-card p-4 h-100">
+            <h3 class="h6 text-uppercase text-muted">Quando confirmar a falha</h3>
+            <ul class="small mb-3">
+              <li>Registre evidências e <strong>notifique o responsável</strong> pelo Indicador de Falha de Sinal.</li>
+              <li>Abra chamado com a empresa de rastreadores se necessário.</li>
+            </ul>
+            <div class="alert alert-info small mb-0" style="color: #001429;"><i class="bi bi-tools me-2"></i>Use o indicador para acompanhar correções e impactos em KM rodado e fechamento por filial.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Indicadores -->
+  <section id="indicadores" class="py-6 bg-light">
+    <div class="container">
+      <h2 class="section-title text-uppercase fw-extrabold mb-4">Indicadores do Suporte</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="soft-card p-4 h-100">
+            <h3 class="h6 mb-1"><a href="imagens/indicador falha de sinal.jpg" class="img-preview" target="_blank" style="color: #001429;">Indicador de <strong>Falha de Sinal</strong></a></h3>
+            <p class="small mb-0" style="color: #001024;">Monitora interrupções/inconsistências de transmissão. Aciona medidas corretivas e chamados às empresas de rastreamento, preservando a integridade operacional e o fechamento correto do KM.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="soft-card p-4 h-100">
+            <h3 class="h6 mb-1"><a href="imagens/INDICARDOR ALIMENTACAO.png" class="img-preview" target="_blank" style="color: #001024;">Indicador de <strong>Alimentação</strong></a></h3>
+            <p class="small mb-0" style="color: #001024;">Acompanha, de forma resumida e precisa, rotas, rotas sem contraleite e o status de KM das filiais.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="soft-card p-4 h-100">
+            <h3 class="h6 mb-1"><a href="imagens/indicador chamados.png" class="img-preview" target="_blank" style="color: #001024;">Indicador de <strong>Chamados</strong></a></h3>
+            <p class="small mb-0" style="color: #001024;">Mede o desempenho na resolução: tempo por chamado, responsável, SLA, expirados e gargalos do suporte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <footer id="contato" class="py-6">
+    <div class="container">
+      <div class="row g-4 align-items-stretch">
+        <div class="col-md-7">
+          <div class="soft-card p-4 h-100">
+            <h2 class="h5 mb-3"><i class="bi bi-life-preserver me-2 text-primary"></i>Suporte Route Now</h2>
+            <p class="small mb-2">Dúvidas, incidentes ou melhorias? Fale com o time de suporte.</p>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-1"><i class="bi bi-geo me-2"></i>Matriz — Avenida Borges de Medeiros, 1257, Matelândia-PR</li>
+              <li class="mb-1"><i class="bi bi-telephone me-2"></i>(45) 3112-1221</li>
+              <li class="mb-1"><i class="bi bi-envelope me-2"></i>contato@viagroup.com.br</li>
+              <li><i class="bi bi-megaphone me-2"></i><a href="https://www.contatoseguro.com.br/viagroup" target="_blank" rel="noopener">Canal de Denúncia</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="soft-card p-4 h-100 bg-dark text-white" >
+            <h3 class="h6 text-uppercase text-secondary" style="color: white;">Links úteis</h3>
+            <ul class="small mb-0" >
+              <li style="color: white;">Política de Privacidade</li>
+              <li style="color: white;">Sustentabilidade e Meio Ambiente</li>
+              <li style="color: white;">Política de Direito e Uso de Terra</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="text-center small text-muted mt-4">© <span id="y"></span> Via Group — Route Now</div>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="btn btn-primary btn-lg rounded-circle" aria-label="Voltar ao topo"><i class="bi bi-arrow-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Scroll: back to top
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) btn.classList.add('show'); else btn.classList.remove('show');
+    });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+
+
+<script>
+(() => {
+  // Cria o popup 1x
+  const popup = document.createElement('div');
+  popup.id = 'imgHoverPopup';
+  popup.innerHTML = '<img alt="Pré-visualização">';
+  document.body.appendChild(popup);
+  const imgEl = popup.querySelector('img');
+
+  const isImgHref = (href) =>
+    /\.(png|jpe?g|webp|gif|svg)(\?.*)?$/i.test(href || '');
+
+  const showPopup = (src, evt) => {
+    imgEl.src = src;
+    popup.classList.add('show');
+    position(evt);
+  };
+
+  const hidePopup = () => {
+    popup.classList.remove('show');
+    imgEl.removeAttribute('src');
+  };
+
+  const position = (e) => {
+    const gap = 16;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    // Dimensões atuais do popup (após ter imagem)
+    const rect = popup.getBoundingClientRect();
+
+    let x = e.clientX + gap;
+    let y = e.clientY + gap;
+
+    // Evita sair da tela (clamp)
+    if (x + rect.width + gap > vw) x = e.clientX - rect.width - gap;
+    if (y + rect.height + gap > vh) y = e.clientY - rect.height - gap;
+
+    popup.style.left = x + 'px';
+    popup.style.top  = y + 'px';
+  };
+
+  // Delegação de eventos: procura <a> com classe ou data-attr
+  document.addEventListener('mouseover', (e) => {
+    const a = e.target.closest('a.img-preview, a[data-preview-src]');
+    if (!a) return;
+
+    const src = a.dataset.previewSrc || a.getAttribute('href');
+    if (!src || (!isImgHref(src) && !a.dataset.previewSrc)) return;
+
+    // Pré-carrega e só então exibe
+    const pre = new Image();
+    pre.onload = () => showPopup(src, e);
+    pre.src = src;
+
+    // Move junto do mouse
+    const onMove = (ev) => position(ev);
+    a.addEventListener('mousemove', onMove);
+
+    // Ao sair, remove tudo
+    const onLeave = () => {
+      hidePopup();
+      a.removeEventListener('mousemove', onMove);
+      a.removeEventListener('mouseleave', onLeave);
+    };
+    a.addEventListener('mouseleave', onLeave, { once: true });
+  });
+
+  // Fechar ao rolar/ESC (opcional)
+  window.addEventListener('scroll', hidePopup, { passive: true });
+  window.addEventListener('keydown', (e) => e.key === 'Escape' && hidePopup());
+})();
+</script>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Cria o pop-up 1x
+  const card = document.createElement('div');
+  card.id = 'hoverCard';
+  card.innerHTML = `
+    <img class="hc-img" alt="">
+    <div class="hc-title"></div>
+    <div class="hc-text"></div>
+  `;
+  document.body.appendChild(card);
+
+  const imgEl   = card.querySelector('.hc-img');
+  const titleEl = card.querySelector('.hc-title');
+  const textEl  = card.querySelector('.hc-text');
+
+  // Posiciona próximo ao cursor, sem sair da tela
+  const place = (e) => {
+    const gap = 16;
+    const vw  = window.innerWidth;
+    const vh  = window.innerHeight;
+    const r   = card.getBoundingClientRect();
+    let x = e.clientX + gap;
+    let y = e.clientY + gap;
+    if (x + r.width  + gap > vw) x = e.clientX - r.width  - gap;
+    if (y + r.height + gap > vh) y = e.clientY - r.height - gap;
+    card.style.left = x + 'px';
+    card.style.top  = y + 'px';
+  };
+
+  // Mostra com pré-carregamento
+  const showFor = (el, e) => {
+    const src   = el.dataset.previewSrc;
+    const title = el.dataset.title || el.textContent.trim();
+    let   text  = el.dataset.text || '';
+
+    // permite quebra de linha usando \n no data-text
+    text = text.replace(/\n/g, '<br>');
+
+    if (!src) return;
+
+    const pre = new Image();
+    pre.onload = () => {
+      imgEl.src = src;
+      imgEl.alt = title || 'Pré-visualização';
+      titleEl.textContent = title;
+      textEl.innerHTML = text;
+      card.classList.add('show');
+      place(e);
+    };
+    pre.src = src;
+  };
+
+  const hide = () => {
+    card.classList.remove('show');
+    imgEl.removeAttribute('src');
+    imgEl.removeAttribute('alt');
+    titleEl.textContent = '';
+    textEl.innerHTML = '';
+  };
+
+  // Ativa para qualquer .legend-badge que tenha data-preview-src
+  const bindHoverCard = (el) => {
+    if (!el.matches('.legend-badge') || !el.dataset.previewSrc) return;
+
+    let raf = 0;
+    el.addEventListener('mouseenter', (e) => showFor(el, e));
+    el.addEventListener('mousemove', (e) => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => place(e));
+    });
+    el.addEventListener('mouseleave', () => {
+      if (raf) cancelAnimationFrame(raf);
+      hide();
+    });
+
+    // Para touch (toque abre, segundo toque/fora fecha)
+    el.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      showFor(el, e.touches[0]);
+    }, {passive:false});
+    document.addEventListener('touchstart', (e) => {
+      if (!card.contains(e.target) && e.target !== el) hide();
+    }, {passive:true});
+  };
+
+  // Inicializa nos elementos existentes
+  document.querySelectorAll('.legend-badge').forEach(bindHoverCard);
+
+  // Se for SPA/dinâmico, observa o DOM
+  const mo = new MutationObserver(muts => {
+    muts.forEach(m => m.addedNodes.forEach(n => {
+      if (n.nodeType === 1) {
+        if (n.matches && n.matches('.legend-badge')) bindHoverCard(n);
+        n.querySelectorAll && n.querySelectorAll('.legend-badge').forEach(bindHoverCard);
+      }
+    }));
+  });
+  mo.observe(document.documentElement, { childList:true, subtree:true });
+
+  // Fecha em scroll/ESC (conforto)
+  window.addEventListener('scroll', hide, {passive:true});
+  window.addEventListener('keydown', (e) => e.key === 'Escape' && hide());
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
